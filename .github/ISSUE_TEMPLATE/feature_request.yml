@@ -1,0 +1,27 @@
+name: Feature request
+description: Suggest a future MCOS/C-MORE feature
+title: "[Feature]: "
+labels: ["enhancement", "feedback-batch"]
+body:
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: What should be added or improved?
+    validations:
+      required: true
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - Math Knowledge Graph
+        - Local storage
+        - Documentation
+        - CLI
+        - Tests
+        - Future MCP
+        - Future adapter
+        - Other
+    validations:
+      required: true

@@ -1,0 +1,42 @@
+{
+  "source_id": "synthetic_math_seed_v0_1",
+  "source_type": "synthetic_local_seed",
+  "license_note": "Synthetic example. No private data.",
+  "objects": [
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440020",
+      "name": "Group",
+      "object_type": "Definition",
+      "formal_system": "math",
+      "alpha_confidence": 0.4,
+      "dependencies": ["Set", "Binary operation"],
+      "status": "open",
+      "created_at": "2026-06-22T00:00:00Z",
+      "updated_at": "2026-06-22T00:00:00Z",
+      "metadata": {"source": "synthetic_seed"}
+    },
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440022",
+      "name": "Monoid",
+      "object_type": "Definition",
+      "formal_system": "math",
+      "alpha_confidence": 0.4,
+      "dependencies": ["Set", "Binary operation", "Associativity", "Identity element"],
+      "status": "open",
+      "created_at": "2026-06-22T00:00:00Z",
+      "updated_at": "2026-06-22T00:00:00Z",
+      "metadata": {"source": "synthetic_seed"}
+    }
+  ],
+  "relations": [
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440021",
+      "source": "Group",
+      "target": "Monoid",
+      "relation_type": "specializes",
+      "alpha_confidence": 0.4,
+      "created_at": "2026-06-22T00:00:00Z",
+      "metadata": {"source": "synthetic_seed"}
+    }
+  ]
+}

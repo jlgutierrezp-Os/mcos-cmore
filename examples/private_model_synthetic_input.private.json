@@ -1,0 +1,20 @@
+{
+  "model_id": "synthetic_private_model_example",
+  "publication_state": "not_public",
+  "objects": [
+    {
+      "name": "Private Concept Placeholder",
+      "object_type": "Definition",
+      "formal_system": "proprietary_placeholder",
+      "alpha_confidence": 0.9
+    }
+  ],
+  "relations": [
+    {
+      "source": "Private Concept Placeholder",
+      "target": "Another Placeholder",
+      "relation_type": "depends_on",
+      "alpha_confidence": 0.9
+    }
+  ]
+}

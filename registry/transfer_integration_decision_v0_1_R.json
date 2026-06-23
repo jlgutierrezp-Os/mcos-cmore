@@ -1,0 +1,18 @@
+{
+  "decision_id": "transfer_integration_v0_1_R",
+  "decision": "stage_transfer_package",
+  "branch_name": "integration/mcos-transfer-v0-1-r",
+  "do_not_replace_core": true,
+  "promote_docs_to_review": true,
+  "promote_api_as_preview_only": true,
+  "source_documents_imported_by_default": false,
+  "external_apis_active": false,
+  "paid_apis_active": false,
+  "human_review_required_before_core_promotion": true,
+  "transfer_package": {
+    "filename": "MCOS_Project_Transfer_Package_v0_1_R.zip",
+    "sha256": "9dff5a235d1a89016d1537cddff9cc80e938e3c806a9131d2360c47abbac3015",
+    "bytes": 364614
+  },
+  "created_at_utc": "2026-06-23T19:04:53Z"
+}

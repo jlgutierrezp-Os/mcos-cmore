@@ -1,0 +1,18 @@
+{
+  "review_id": "PR_1_BATCH_6_SUPERCLUSTER_GAP_REVIEW",
+  "pr_number": 1,
+  "branch": "integration/mcos-transfer-v0-1-r",
+  "decision": "keep_draft",
+  "ready_for_review": false,
+  "ready_to_merge": false,
+  "runtime_tests_executed_by_connector": false,
+  "static_review_completed": true,
+  "gaps": [
+    {"id": "SC-P0-RUNTIME", "severity": "P0", "classification": "runtime_proof_gap", "ready_blocker": true, "issue_required": true},
+    {"id": "SC-P1-SCHEMA", "severity": "P1", "classification": "validation_depth_gap", "ready_blocker": true, "issue_required": true},
+    {"id": "SC-P1-PRIVACY", "severity": "P1", "classification": "privacy_convention_gap", "ready_blocker": false, "issue_required": true},
+    {"id": "SC-P1-DISTILL", "severity": "P1", "classification": "distillation_hardening_gap", "ready_blocker": false, "issue_required": true},
+    {"id": "SC-P2-GRAPH", "severity": "P2", "classification": "graph_index_future_gap", "ready_blocker": false, "issue_required": true},
+    {"id": "SC-P2-FOUNDATION", "severity": "P2", "classification": "foundation_seed_expansion_gap", "ready_blocker": false, "issue_required": true}
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "source_id": "foundation_layer_zfc_category_hott_v0_1",
+  "source_type": "synthetic_foundation_layer_seed",
+  "license_note": "Synthetic public seed. No private model data.",
+  "publication_state": "public_synthetic_seed",
+  "human_review_required": true,
+  "objects": [
+    {"id":"550e8400-e29b-41d4-a716-446655441000","name":"ZFC","object_type":"Definition","formal_system":"zfc","alpha_confidence":0.6,"dependencies":[],"status":"open","metadata":{"foundation_role":"classical_reference_foundation","layer":"foundation"}},
+    {"id":"550e8400-e29b-41d4-a716-446655441001","name":"Category Theory","object_type":"Definition","formal_system":"category_theory","alpha_confidence":0.6,"dependencies":[],"status":"open","metadata":{"foundation_role":"structural_relational_foundation","layer":"foundation"}},
+    {"id":"550e8400-e29b-41d4-a716-446655441002","name":"HoTT","object_type":"Definition","formal_system":"hott","alpha_confidence":0.6,"dependencies":[],"status":"open","metadata":{"foundation_role":"type_path_equivalence_foundation","layer":"foundation"}},
+    {"id":"550e8400-e29b-41d4-a716-446655441003","name":"Set","object_type":"Definition","formal_system":"zfc","alpha_confidence":0.6,"dependencies":["ZFC"],"status":"open","metadata":{"layer":"foundation"}},
+    {"id":"550e8400-e29b-41d4-a716-446655441004","name":"Function","object_type":"Function","formal_system":"zfc","alpha_confidence":0.6,"dependencies":["Set"],"status":"open","metadata":{"layer":"foundation"}},
+    {"id":"550e8400-e29b-41d4-a716-446655441005","name":"Category","object_type":"Category","formal_system":"category_theory","alpha_confidence":0.6,"dependencies":["Category Theory"],"status":"open","metadata":{"layer":"foundation"}},
+    {"id":"550e8400-e29b-41d4-a716-446655441006","name":"Morphism","object_type":"Morphism","formal_system":"category_theory","alpha_confidence":0.6,"dependencies":["Category"],"status":"open","metadata":{"layer":"foundation"}},
+    {"id":"550e8400-e29b-41d4-a716-446655441007","name":"Composition","object_type":"Transformation","formal_system":"category_theory","alpha_confidence":0.6,"dependencies":["Morphism"],"status":"open","metadata":{"layer":"foundation"}},
+    {"id":"550e8400-e29b-41d4-a716-446655441008","name":"Type","object_type":"Type","formal_system":"hott","alpha_confidence":0.6,"dependencies":["HoTT"],"status":"open","metadata":{"layer":"foundation"}},
+    {"id":"550e8400-e29b-41d4-a716-446655441009","name":"Path","object_type":"Relation","formal_system":"hott","alpha_confidence":0.4,"dependencies":["Type"],"status":"open","metadata":{"layer":"foundation"}},
+    {"id":"550e8400-e29b-41d4-a716-446655441010","name":"Equivalence","object_type":"Relation","formal_system":"hott","alpha_confidence":0.4,"dependencies":["Type"],"status":"open","metadata":{"layer":"foundation"}}
+  ],
+  "relations": [
+    {"id":"550e8400-e29b-41d4-a716-446655442000","source":"ZFC","target":"Set","relation_type":"defines","alpha_confidence":0.6,"metadata":{"layer":"foundation"}},
+    {"id":"550e8400-e29b-41d4-a716-446655442001","source":"ZFC","target":"Function","relation_type":"defines","alpha_confidence":0.6,"metadata":{"layer":"foundation"}},
+    {"id":"550e8400-e29b-41d4-a716-446655442002","source":"Category Theory","target":"Category","relation_type":"defines","alpha_confidence":0.6,"metadata":{"layer":"foundation"}},
+    {"id":"550e8400-e29b-41d4-a716-446655442003","source":"Category","target":"Morphism","relation_type":"defines","alpha_confidence":0.6,"metadata":{"layer":"foundation"}},
+    {"id":"550e8400-e29b-41d4-a716-446655442004","source":"Morphism","target":"Composition","relation_type":"depends_on","alpha_confidence":0.6,"metadata":{"layer":"foundation"}},
+    {"id":"550e8400-e29b-41d4-a716-446655442005","source":"HoTT","target":"Type","relation_type":"defines","alpha_confidence":0.6,"metadata":{"layer":"foundation"}},
+    {"id":"550e8400-e29b-41d4-a716-446655442006","source":"HoTT","target":"Path","relation_type":"defines","alpha_confidence":0.4,"metadata":{"layer":"foundation"}},
+    {"id":"550e8400-e29b-41d4-a716-446655442007","source":"HoTT","target":"Equivalence","relation_type":"defines","alpha_confidence":0.4,"metadata":{"layer":"foundation"}},
+    {"id":"550e8400-e29b-41d4-a716-446655442008","source":"Category Theory","target":"HoTT","relation_type":"approximates","alpha_confidence":0.2,"metadata":{"layer":"foundation","review_note":"Interpretive bridge only. Requires human review."}}
+  ]
+}

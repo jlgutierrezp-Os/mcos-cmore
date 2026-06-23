@@ -1,0 +1,16 @@
+{
+  "registry_id": "foundation_layer_registry_v0_1",
+  "layer": "foundation",
+  "foundation_triad": ["ZFC", "Category Theory", "HoTT"],
+  "active_feed_file": "examples/foundation_layer_seed.json",
+  "docs": [
+    "docs/FOUNDATION_LAYER_INGESTION.md",
+    "docs/FOUNDATION_LAYER_MINIMUM_REVIEW.md"
+  ],
+  "activation_state": "local_seed_only",
+  "proof_assistants_active": false,
+  "external_apis_active": false,
+  "paid_apis_active": false,
+  "human_review_required": true,
+  "private_model_policy": "private models must be zero-distilled before publication"
+}

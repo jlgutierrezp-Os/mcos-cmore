@@ -1,0 +1,35 @@
+{
+  "registry_id": "bootstrap_feed_registry_v0_1",
+  "local_first": true,
+  "public_release_default": false,
+  "human_review_required": true,
+  "active_feed_modes": [
+    "manual_json",
+    "jsonl_batch",
+    "source_package_json",
+    "zero_distillation_review"
+  ],
+  "future_not_active": [
+    "lean_adapter",
+    "coq_adapter",
+    "mcp_adapter",
+    "external_api",
+    "paid_api"
+  ],
+  "minimum_capabilities": [
+    {"id": 0, "name": "Ingest/read MathObject", "status": "active"},
+    {"id": 1, "name": "Create MathObject", "status": "active"},
+    {"id": 2, "name": "Create MathRelation", "status": "active"},
+    {"id": 3, "name": "Validate objects locally", "status": "active"},
+    {"id": 4, "name": "Store nodes in JSONL", "status": "active"},
+    {"id": 5, "name": "Store edges in JSONL", "status": "active"},
+    {"id": 6, "name": "Export local graph", "status": "active"},
+    {"id": 7, "name": "Compare math objects", "status": "active"},
+    {"id": 8, "name": "Generate human review packet", "status": "active"},
+    {"id": 9, "name": "Receive feedback public/local", "status": "planned"},
+    {"id": 10, "name": "Group feedback in batches", "status": "planned"},
+    {"id": 11, "name": "Keep paid APIs inactive", "status": "active"},
+    {"id": 12, "name": "Prepare future adapter boundary", "status": "planned"},
+    {"id": 13, "name": "Execute selfdebug", "status": "active"}
+  ]
+}

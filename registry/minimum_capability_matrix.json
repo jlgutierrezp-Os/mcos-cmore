@@ -1,0 +1,20 @@
+{
+  "matrix_id": "minimum_capability_matrix_v0_1",
+  "scope": "MCOS/C-MORE bootstrap",
+  "capabilities": [
+    {"id": 0, "name": "Ingest/read MathObject", "required_for_push": true},
+    {"id": 1, "name": "Create MathObject", "required_for_push": true},
+    {"id": 2, "name": "Create MathRelation", "required_for_push": true},
+    {"id": 3, "name": "Validate objects locally", "required_for_push": true},
+    {"id": 4, "name": "Store nodes in JSONL", "required_for_push": true},
+    {"id": 5, "name": "Store edges in JSONL", "required_for_push": true},
+    {"id": 6, "name": "Export local graph", "required_for_push": true},
+    {"id": 7, "name": "Compare math objects", "required_for_push": true},
+    {"id": 8, "name": "Generate review packet", "required_for_push": true},
+    {"id": 9, "name": "Receive feedback", "required_for_push": false},
+    {"id": 10, "name": "Group feedback batches", "required_for_push": false},
+    {"id": 11, "name": "Keep paid APIs inactive", "required_for_push": true},
+    {"id": 12, "name": "Prepare future adapter boundary", "required_for_push": false},
+    {"id": 13, "name": "Execute selfdebug", "required_for_push": true}
+  ]
+}
