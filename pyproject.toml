@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcos-cmore"
+version = "0.1.0"
+description = "MCOS C-MORE local-first mathematical knowledge graph bootstrap"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+license = {text = "Source-Available Non-Commercial"}
+
+[project.scripts]
+mcos = "mcos.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["mcos*"]
