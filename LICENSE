@@ -1,0 +1,31 @@
+# MCOS-CMORE Source-Available Non-Commercial License v0.1
+
+Copyright (c) 2026 Jose Luis Gutierrez Pacheco.
+All rights reserved.
+
+This repository is publicly visible for review, learning, local testing, feedback, and contribution to MCOS-CMORE.
+
+Public visibility does not mean open-source licensing.
+
+You may:
+
+- view the source code;
+- download and run it locally for non-commercial evaluation;
+- study the architecture and implementation;
+- submit issues, suggestions, and pull requests.
+
+You may not, without prior written permission:
+
+- use this software commercially;
+- sell, sublicense, rent, host, or offer it as a service;
+- incorporate it into commercial products;
+- redistribute modified or unmodified versions for commercial purposes;
+- use the MCOS, C-MORE, LUU, or Atlas names as your own.
+
+Commercial licensing requires a separate written agreement.
+
+Do not use this repository with secrets, credentials, private records, regulated data, or production systems.
+
+This software is provided as is, without warranty.
+
+All rights not expressly granted are reserved.
