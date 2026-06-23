@@ -1,0 +1,19 @@
+name: Bug report
+description: Report a reproducible MCOS/C-MORE issue
+title: "[Bug]: "
+labels: ["bug", "needs-review"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What failed?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Include commands and minimal examples.
+    validations:
+      required: true
