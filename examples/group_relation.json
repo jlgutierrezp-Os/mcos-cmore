@@ -1,0 +1,9 @@
+{
+  "id": "550e8400-e29b-41d4-a716-446655440011",
+  "source": "Group",
+  "target": "Monoid",
+  "relation_type": "specializes",
+  "alpha_confidence": 0.4,
+  "created_at": "2026-06-22T00:00:00Z",
+  "metadata": {}
+}
