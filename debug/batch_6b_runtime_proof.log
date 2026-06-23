@@ -1,0 +1,42 @@
+# Batch 6B Runtime Proof
+created_at_utc=2026-06-23T22:15:54Z
+source=human_operator_provided_runtime_log
+branch_reported_by_runtime=work
+pr_branch=integration/mcos-transfer-v0-1-r
+
+## Summary
+unit_tests=passed
+unit_tests_count=12
+selfdebug=passed
+run_all_checks=passed
+feed_source_package_dry_run=passed
+foundation_layer_seed_dry_run=passed
+bootstrap_readiness=passed
+missing_required_paths=[]
+minimum_capabilities_total=14
+local_first=true
+public_release_default=false
+human_review_required=true
+
+## Evidence excerpts
+python -m unittest discover -s tests
+Ran 12 tests in 0.007s
+OK
+
+python -m mcos.cli selfdebug
+status=passed
+checks=valid_math_object, invalid_alpha_rejected, valid_math_relation, compare_and_review, invalid_equivalence_report_rejected
+
+bash scripts/run_all_checks.sh
+Ran 12 tests in 0.006s
+OK
+VALID
+VALID
+examples/feed_source_package.json dry-run status=passed records_total=3 objects_valid=2 relations_valid=1 errors=[]
+examples/foundation_layer_seed.json dry-run status=passed records_total=20 objects_valid=11 relations_valid=9 errors=[]
+bootstrap_readiness status=passed missing_required_paths=[] minimum_capabilities_total=14
+
+## Decision
+SC-P0-RUNTIME=satisfied
+SC-P1-SCHEMA=tests_passed_after_fix
+BATCH_6B_RUNTIME_PROOF_PASS_TRUE
