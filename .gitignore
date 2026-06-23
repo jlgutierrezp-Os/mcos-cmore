@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+data/*.jsonl
+debug/
+.DS_Store
+private/
+private_models/
+proprietary/
+*.private.json
+*.private.jsonl
