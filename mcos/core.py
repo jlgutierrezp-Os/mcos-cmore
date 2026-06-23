@@ -115,9 +115,13 @@ class JsonlStore:
         self.nodes_path = self.data_dir / "nodes.jsonl"
         self.edges_path = self.data_dir / "edges.jsonl"
     def add_node(self, obj: dict[str, Any]) -> dict[str, Any]:
-        validate_math_object(obj); self._append(self.nodes_path, obj); return obj
+        validate_math_object(obj)
+        self._append(self.nodes_path, obj)
+        return obj
     def add_edge(self, obj: dict[str, Any]) -> dict[str, Any]:
-        validate_math_relation(obj); self._append(self.edges_path, obj); return obj
+        validate_math_relation(obj)
+        self._append(self.edges_path, obj)
+        return obj
     def nodes(self) -> list[dict[str, Any]]:
         return self._read(self.nodes_path)
     def edges(self) -> list[dict[str, Any]]:
@@ -175,17 +179,45 @@ def main(argv: list[str] | None = None) -> None:
     sub = parser.add_subparsers(required=True)
     p = sub.add_parser("selfdebug"); p.set_defaults(func=lambda args: print_json(selfdebug()))
     p = sub.add_parser("object-new"); p.add_argument("name"); p.set_defaults(func=lambda args: print_json(MathObject(args.name).to_dict()))
+    p = sub.add_parser("relation-new"); p.add_argument("source"); p.add_argument("target"); p.add_argument("relation_type"); p.set_defaults(func=lambda args: print_json(MathRelation(args.source, args.target, args.relation_type).to_dict()))
     p = sub.add_parser("validate"); p.add_argument("kind", choices=["object", "relation", "response"]); p.add_argument("file")
     def validate_cmd(args):
         obj = load_json(args.file)
         {"object": validate_math_object, "relation": validate_math_relation, "response": validate_adapter_response}[args.kind](obj)
         print("VALID")
     p.set_defaults(func=validate_cmd)
-    p = sub.add_parser("graph-add"); p.add_argument("file"); p.set_defaults(func=lambda args: print_json(JsonlStore().add_node(load_json(args.file))))
-    p = sub.add_parser("graph-edge"); p.add_argument("file"); p.set_defaults(func=lambda args: print_json(JsonlStore().add_edge(load_json(args.file))))
-    p = sub.add_parser("graph-export"); p.set_defaults(func=lambda args: print_json(JsonlStore().export()))
+    p = sub.add_parser("graph-add"); p.add_argument("file"); p.add_argument("--data-dir", default="data"); p.set_defaults(func=lambda args: print_json(JsonlStore(args.data_dir).add_node(load_json(args.file))))
+    p = sub.add_parser("graph-edge"); p.add_argument("file"); p.add_argument("--data-dir", default="data"); p.set_defaults(func=lambda args: print_json(JsonlStore(args.data_dir).add_edge(load_json(args.file))))
+    p = sub.add_parser("graph-export"); p.add_argument("--data-dir", default="data"); p.set_defaults(func=lambda args: print_json(JsonlStore(args.data_dir).export()))
+    p = sub.add_parser("ingest"); p.add_argument("file"); p.add_argument("--data-dir", default="data"); p.add_argument("--dry-run", action="store_true")
+    def ingest_cmd(args):
+        from mcos.ingest import ingest_file
+        print_json(ingest_file(args.file, args.data_dir, dry_run=args.dry_run))
+    p.set_defaults(func=ingest_cmd)
+    p = sub.add_parser("distill-zero"); p.add_argument("input_file"); p.add_argument("output_file"); p.add_argument("--mode", default="skeleton")
+    def distill_cmd(args):
+        from mcos.distill import distill_file
+        print_json(distill_file(args.input_file, args.output_file, mode=args.mode))
+    p.set_defaults(func=distill_cmd)
+    p = sub.add_parser("feed-registry")
+    def registry_cmd(args):
+        from mcos.feed_registry import load_bootstrap_feed_registry
+        print_json(load_bootstrap_feed_registry())
+    p.set_defaults(func=registry_cmd)
+    p = sub.add_parser("init-feed-registry"); p.add_argument("--data-dir", default="data")
+    def init_registry_cmd(args):
+        from mcos.feed_registry import write_initial_feed_registry
+        print_json(write_initial_feed_registry(args.data_dir))
+    p.set_defaults(func=init_registry_cmd)
+    p = sub.add_parser("bootstrap-readiness")
+    def readiness_cmd(args):
+        from mcos.feed_registry import bootstrap_readiness_report
+        print_json(bootstrap_readiness_report())
+    p.set_defaults(func=readiness_cmd)
+    p = sub.add_parser("feed-plan"); p.set_defaults(func=lambda args: print_json({"current_active_modes": ["manual_json", "jsonl_batch", "source_package_json", "zero_distillation_review"], "future_not_active": ["lean_adapter", "coq_adapter", "mcp_adapter", "external_api", "paid_api"]}))
     p = sub.add_parser("compare"); p.add_argument("left"); p.add_argument("right"); p.set_defaults(func=lambda args: print_json(compare_math_objects(load_json(args.left), load_json(args.right))))
-    args = parser.parse_args(argv); args.func(args)
+    args = parser.parse_args(argv)
+    args.func(args)
 
 if __name__ == "__main__":
     main()
