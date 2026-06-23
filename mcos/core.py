@@ -14,6 +14,7 @@ OBJECT_TYPES = {"Definition", "Axiom", "Theorem", "Lemma", "Corollary", "Conject
 RELATION_TYPES = {"defines", "implies", "depends_on", "proves", "refutes", "equivalent_to", "generalizes", "specializes", "transforms_into", "approximates", "derived_from"}
 OBJECT_STATUS = {"open", "verified", "failed", "partial", "refuted"}
 RESPONSE_STATUS = {"success", "partial", "failed"}
+SEVERITY = {"warning", "error", "critical"}
 
 class ValidationError(ValueError):
     pass
@@ -38,6 +39,8 @@ def require_alpha(value: Any) -> None:
         raise ValidationError("alpha_confidence must be a number in [0, 1]")
 
 def closed(obj: dict[str, Any], required: list[str], optional: set[str] | None = None) -> None:
+    if not isinstance(obj, dict):
+        raise ValidationError("object expected")
     optional = optional or set()
     missing = [k for k in required if k not in obj]
     extra = [k for k in obj if k not in set(required) | optional]
@@ -97,6 +100,21 @@ def validate_math_relation(obj: dict[str, Any]) -> bool:
         raise ValidationError("relation_type not allowed")
     return True
 
+def validate_equivalence_report(report: dict[str, Any]) -> bool:
+    closed(report, ["checked", "comparison_scope", "differences"])
+    if not isinstance(report["checked"], bool):
+        raise ValidationError("equivalence_report.checked must be boolean")
+    require_string(report["comparison_scope"], "equivalence_report.comparison_scope")
+    if not isinstance(report["differences"], list):
+        raise ValidationError("equivalence_report.differences must be list")
+    for idx, item in enumerate(report["differences"]):
+        closed(item, ["description", "path", "severity"])
+        require_string(item["description"], f"equivalence_report.differences[{idx}].description")
+        require_string(item["path"], f"equivalence_report.differences[{idx}].path")
+        if item["severity"] not in SEVERITY:
+            raise ValidationError(f"equivalence_report.differences[{idx}].severity not allowed")
+    return True
+
 def validate_adapter_response(obj: dict[str, Any]) -> bool:
     closed(obj, ["request_id", "status", "result"], {"message", "equivalence_report", "created_at"})
     require_uuid(obj["request_id"], "request_id")
@@ -106,6 +124,8 @@ def validate_adapter_response(obj: dict[str, Any]) -> bool:
         require_string(obj["message"], "message")
     if not isinstance(obj["result"], dict) or not obj["result"]:
         raise ValidationError("result must be non-empty object")
+    if "equivalence_report" in obj:
+        validate_equivalence_report(obj["equivalence_report"])
     return True
 
 class JsonlStore:
@@ -172,6 +192,11 @@ def selfdebug() -> dict[str, Any]:
         checks.append({"name": "invalid_alpha_rejected", "passed": True})
     ok("valid_math_relation", lambda: validate_math_relation(MathRelation("Group", "Monoid", "specializes").to_dict()))
     ok("compare_and_review", lambda: review_packet(compare_math_objects(MathObject("Group").to_dict(), MathObject("Group").to_dict())))
+    try:
+        validate_adapter_response({"request_id": new_id(), "status": "success", "result": {"ok": True}, "equivalence_report": {"checked": True}})
+        checks.append({"name": "invalid_equivalence_report_rejected", "passed": False})
+    except ValidationError:
+        checks.append({"name": "invalid_equivalence_report_rejected", "passed": True})
     return {"status": "passed" if all(c["passed"] for c in checks) else "failed", "checks": checks, "created_at": utc_now()}
 
 def main(argv: list[str] | None = None) -> None:
