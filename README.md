@@ -1,7 +1,92 @@
-# mcos-cmore
+# MCOS / C-MORE
 
-Bootstrap placeholder only.
+> Source-available non-commercial. Public review, local testing, educational/research use, feedback, and contributions are welcome. Commercial use requires a separate written license agreement.
 
-The full MCOS transfer package is staged on branch `integration/mcos-transfer-v0-1-r`.
+MCOS / C-MORE is a local-first bootstrap for a Mathematical Cognitive Operating System focused first on a Math Knowledge Graph.
 
-Do not treat `main` as the active integration branch until reviewed and promoted by human decision.
+This branch is an integration branch:
+
+```text
+integration/mcos-transfer-v0-1-r
+```
+
+Do not merge to `main` until human review approves promotion.
+
+## Current scope
+
+Active in this branch:
+
+- MathObject;
+- MathRelation;
+- local validation;
+- JSONL node/edge store;
+- graph export;
+- minimal equivalence comparison;
+- human review packet generation;
+- local ingestion;
+- zero-distillation review workflow;
+- bootstrap feed registry;
+- selfdebug;
+- tests.
+
+Not active:
+
+- Lean adapter;
+- Coq adapter;
+- MCP server;
+- external APIs;
+- paid APIs;
+- automatic promotion to core.
+
+## Install
+
+```bash
+git clone https://github.com/jlgutierrezp-Os/mcos-cmore.git
+cd mcos-cmore
+git checkout integration/mcos-transfer-v0-1-r
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -e .
+python -m mcos.cli selfdebug
+python -m unittest discover -s tests
+```
+
+## Feed the graph
+
+Dry-run:
+
+```bash
+python -m mcos.cli ingest examples/feed_source_package.json --dry-run
+```
+
+Write locally:
+
+```bash
+python -m mcos.cli ingest examples/feed_source_package.json
+```
+
+Export:
+
+```bash
+python -m mcos.cli graph-export
+```
+
+## Private/proprietary model workflow
+
+Private or proprietary models are not public by default. They should pass through local zero-distillation before any publication decision.
+
+```bash
+python -m mcos.cli distill-zero examples/private_model_synthetic_input.private.json distill/review_queue/zero_candidate.json --mode skeleton
+```
+
+## Bootstrap registry
+
+```bash
+python -m mcos.cli feed-registry
+python -m mcos.cli init-feed-registry --data-dir data
+python -m mcos.cli bootstrap-readiness
+```
+
+## Review gate
+
+All promotion from staged transfer material into core requires explicit human review.
