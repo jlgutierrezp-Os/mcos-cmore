@@ -4,17 +4,25 @@
 
 MCOS / C-MORE is a local-first bootstrap for a Mathematical Cognitive Operating System focused first on a Math Knowledge Graph.
 
-This branch is an integration branch:
+## Current status
+
+PR #1 has been squash-merged into `main` after Batch 6B runtime proof.
+
+The integration branch was:
 
 ```text
 integration/mcos-transfer-v0-1-r
 ```
 
-Do not merge to `main` until human review approves promotion.
+The active public bootstrap is now on:
+
+```text
+main
+```
 
 ## Current scope
 
-Active in this branch:
+Active in `main`:
 
 - MathObject;
 - MathRelation;
@@ -26,6 +34,7 @@ Active in this branch:
 - local ingestion;
 - zero-distillation review workflow;
 - bootstrap feed registry;
+- Foundation Layer seed: ZFC + Category Theory + HoTT;
 - selfdebug;
 - tests.
 
@@ -43,12 +52,12 @@ Not active:
 ```bash
 git clone https://github.com/jlgutierrezp-Os/mcos-cmore.git
 cd mcos-cmore
-git checkout integration/mcos-transfer-v0-1-r
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -e .
 python -m mcos.cli selfdebug
 python -m unittest discover -s tests
+bash scripts/run_all_checks.sh
 ```
 
 ## Feed the graph
@@ -71,6 +80,20 @@ Export:
 python -m mcos.cli graph-export
 ```
 
+## Foundation Layer
+
+Dry-run the initial foundation seed:
+
+```bash
+python -m mcos.cli ingest examples/foundation_layer_seed.json --dry-run
+```
+
+Current foundation triad:
+
+```text
+ZFC + Category Theory + HoTT
+```
+
 ## Private/proprietary model workflow
 
 Private or proprietary models are not public by default. They should pass through local zero-distillation before any publication decision.
@@ -89,4 +112,4 @@ python -m mcos.cli bootstrap-readiness
 
 ## Review gate
 
-All promotion from staged transfer material into core requires explicit human review.
+All future promotion from staged material into core requires explicit human review.
