@@ -1,0 +1,27 @@
+# PR8 v0.1A hardening runtime proof
+source=human_operator_provided_runtime_log
+pr=8
+branch=v0-1-r-hardening
+
+## Observed proof
+python -m unittest discover -s tests
+Ran 15 tests in 0.005s
+OK
+
+python -m mcos.cli selfdebug
+status=passed
+checks=valid_math_object, invalid_alpha_rejected, invalid_equivalence_report_rejected
+
+bash scripts/run_all_checks.sh
+Ran 15 tests in 0.006s
+OK
+VALID
+VALID
+examples/feed_source_package.json dry-run relations_valid=1 errors=[]
+examples/foundation_layer_seed.json dry-run relations_valid=18 errors=[]
+bootstrap_readiness status=passed
+
+## Decision
+PR8-v0.1A-HARDENING-RUNTIME=satisfied
+PR8-v0.1A-SCHEMA=tests_passed
+PR8_V0_1A_HARDENING_RUNTIME_PROOF_PASS_TRUE

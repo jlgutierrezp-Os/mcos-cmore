@@ -18,26 +18,47 @@ local-first != disconnected from mathematical tradition
 
 ## Review status
 
-The current foundation seed is acceptable as:
+The current foundation seed is now acceptable as:
 
 ```text
-FOUNDATION_LAYER_MINIMAL_SEED_v0.1
+FOUNDATION_LAYER_MINIMAL_SEED_v0.1A
 ```
 
-It is not yet:
+It is still not:
 
 ```text
 FOUNDATION_LAYER_COMPLETE
 ```
 
-## Recommended next expansion
+## v0.1A expansion applied
+
+The seed now includes the original triad:
+
+```text
+ZFC + Category Theory + HoTT
+```
+
+and expands the minimum bridge set with:
 
 - Function;
 - Relation;
 - Object;
 - Composition;
 - Identity Morphism;
+- Functor;
 - Natural Transformation;
-- Equivalence;
 - Term;
-- Universe.
+- Universe;
+- Univalence.
+
+## Boundary
+
+This is still a synthetic seed.
+
+No proof assistant is active.
+
+No external API is active.
+
+No paid API is active.
+
+Interpretive bridge relations still require human review.

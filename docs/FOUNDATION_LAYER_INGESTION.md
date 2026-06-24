@@ -18,6 +18,14 @@ It prevents absolute zero initialization while avoiding premature commitment to 
 - Category Theory: structural and relational foundation.
 - HoTT: type, path, identity and equivalence foundation.
 
+## v0.1A seed contents
+
+The seed includes:
+
+- ZFC, Set, Function, Relation;
+- Category Theory, Category, Object, Morphism, Composition, Identity Morphism, Functor, Natural Transformation;
+- HoTT, Type, Term, Universe, Path, Equivalence, Univalence.
+
 ## Status
 
 ```json
@@ -38,4 +46,8 @@ python -m mcos.cli ingest examples/foundation_layer_seed.json --dry-run
 
 ## Policy
 
-The foundation seed is synthetic and public. Private foundation models must pass through zero-distillation and human review before any publication decision.
+The foundation seed is synthetic and public.
+
+Private foundation models must pass through zero-distillation and human review before any publication decision.
+
+Interpretive bridge relations remain review-required until future formalization or human promotion.
