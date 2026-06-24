@@ -41,11 +41,24 @@ class DistillTests(unittest.TestCase):
             self.assertGreaterEqual(item["alpha_confidence"], 0.0)
             self.assertLessEqual(item["alpha_confidence"], 0.2)
 
+    def test_missing_collections_default_to_empty(self):
+        result = zero_distill_model({})
+        self.assertEqual(result["review_summary"]["source_objects_count"], 0)
+        self.assertEqual(result["review_summary"]["source_relations_count"], 0)
+        self.assertEqual(result["objects"], [])
+        self.assertEqual(result["relations"], [])
+
     def test_invalid_collection_shape_rejected(self):
-        with self.assertRaises(DistillError):
-            zero_distill_model({"objects": {}, "relations": []})
-        with self.assertRaises(DistillError):
-            zero_distill_model({"objects": [], "relations": {}})
+        invalid_payloads = [
+            {"objects": {}, "relations": []},
+            {"objects": [], "relations": {}},
+            {"objects": None, "relations": []},
+            {"objects": [], "relations": None},
+        ]
+        for payload in invalid_payloads:
+            with self.subTest(payload=payload):
+                with self.assertRaises(DistillError):
+                    zero_distill_model(payload)
 
     def test_unknown_types_are_normalized(self):
         result = zero_distill_model({
