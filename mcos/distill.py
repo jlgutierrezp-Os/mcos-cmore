@@ -52,12 +52,18 @@ def _safe_relation_type(value: Any) -> str:
 
 def _safe_list(value: Any, field_name: str) -> list[Any]:
     if value is None:
-        return []
+        raise DistillError(f"{field_name} must be an array")
     if not isinstance(value, list):
         raise DistillError(f"{field_name} must be an array")
     if len(value) > MAX_DISTILL_ITEMS:
         raise DistillError(f"{field_name} exceeds maximum allowed items")
     return value
+
+
+def _optional_array(payload: dict[str, Any], field_name: str) -> list[Any]:
+    if field_name not in payload:
+        return []
+    return _safe_list(payload[field_name], field_name)
 
 
 def zero_distill_model(payload: dict[str, Any], mode: str = "skeleton") -> dict[str, Any]:
@@ -66,8 +72,8 @@ def zero_distill_model(payload: dict[str, Any], mode: str = "skeleton") -> dict[
     if mode not in {"skeleton", "structure"}:
         raise DistillError("mode must be skeleton or structure")
 
-    objects = _safe_list(payload.get("objects", []), "objects")
-    relations = _safe_list(payload.get("relations", []), "relations")
+    objects = _optional_array(payload, "objects")
+    relations = _optional_array(payload, "relations")
 
     skipped = {"objects": 0, "relations": 0}
     distilled_objects = []

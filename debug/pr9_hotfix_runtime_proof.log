@@ -1,0 +1,21 @@
+# PR9 Hotfix Runtime Proof
+source=human_operator_terminal_log
+pr=9
+branch=hotfix/pr8-p2-review-fixes-v0-1a
+
+## Observed proof
+python -m unittest discover -s tests
+status=passed
+
+python -m mcos.cli selfdebug
+status=passed
+
+bash scripts/run_all_checks.sh
+status=passed
+bootstrap_readiness status=passed
+local_first=true
+public_release_default=false
+human_review_required=true
+
+## Decision
+PR9_HOTFIX_PR8_P2_REVIEW_FIXES_RUNTIME_PROOF_PASS_TRUE
